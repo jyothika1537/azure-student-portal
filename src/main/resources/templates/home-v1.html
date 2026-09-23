@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Version 1</title>
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --primary: #1e40af;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border: #cbd5e1;
+            --v1-badge: #2563eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            color: var(--text-dark);
+        }
+
+        .portal-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            max-width: 650px;
+            width: 100%;
+            padding: 36px;
+            border-top: 6px solid var(--primary);
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 {
+            color: var(--text-dark);
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            border: 1px solid #93c5fd;
+            margin: 12px 0 20px 0;
+        }
+
+        .slot-badge {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .nav-links {
+            padding: 12px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .desc-text {
+            color: var(--text-muted);
+            margin-top: 16px;
+            font-size: 0.95rem;
+        }
+
+        .meta-box {
+            margin-top: 24px;
+            padding: 16px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px dashed var(--border);
+            font-size: 0.88rem;
+        }
+
+        .meta-box p {
+            margin: 4px 0;
+        }
+
+        .action-row {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-outline {
+            background-color: #ffffff;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-card">
+        <h1>🎓 Student Portal</h1>
+
+        <h2>Welcome to Student Portal</h2>
+
+        <div>
+            <span class="version-badge" th:text="${version}">VERSION 1</span>
+            <span class="slot-badge" th:text="'Slot: ' + ${slotName}">Slot: Production</span>
+            <span class="slot-badge" style="background:#fef3c7; color:#92400e; border:1px solid #fde68a;" th:text="'Env: ' + ${environment}">Env: production</span>
+        </div>
+
+        <p class="nav-links">
+            <a href="/">Home</a> | 
+            <a href="/actuator/health">Actuator Health</a> | 
+            <a href="/api/status">Diagnostic Status</a>
+        </p>
+
+        <p class="desc-text">Azure App Service Deployment Project</p>
+
+        <div class="meta-box">
+            <p><strong>Baseline Deployment State:</strong> Version 1 (Production)</p>
+            <p><strong>Health Probe:</strong> <a href="/actuator/health" style="color:#2563eb;">/actuator/health</a> (HTTP 200 UP)</p>
+            <p><strong>Slot Swap Demo:</strong> Deploy Version 2 to the <code>staging</code> slot and trigger swap validation to test zero-downtime routing cutover.</p>
+        </div>
+
+        <div class="action-row">
+            <a href="/v2" class="btn btn-primary">Preview Version 2 Portal &rarr;</a>
+            <a href="/actuator/health" class="btn btn-outline" target="_blank">Validate Health Probe</a>
+        </div>
+    </div>
+
+</body>
+</html>
