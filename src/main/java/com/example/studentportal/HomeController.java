@@ -92,7 +92,7 @@ public class HomeController {
     }
 
     private void populateVersion2Model(Model model) {
-        model.addAttribute("version", appVersion.startsWith("v") ? appVersion : "v" + appVersion);
+        model.addAttribute("version", "VERSION 2");
         model.addAttribute("rawVersion", appVersion);
         model.addAttribute("slotName", slotName);
         model.addAttribute("environment", environment);

@@ -34,7 +34,9 @@ class StudentportalApplicationTests {
     void testVersion1Endpoint() throws Exception {
         mockMvc.perform(get("/v1"))
             .andExpect(status().isOk())
+            .andExpect(content().string(containsString("STUDENT PORTAL")))
             .andExpect(content().string(containsString("VERSION 1")))
+            .andExpect(content().string(containsString("Azure App Service Deployment Slots")))
             .andExpect(content().string(containsString("Azure App Service Deployment Project")));
     }
 
@@ -42,6 +44,9 @@ class StudentportalApplicationTests {
     void testVersion2Endpoint() throws Exception {
         mockMvc.perform(get("/v2"))
             .andExpect(status().isOk())
+            .andExpect(content().string(containsString("STUDENT PORTAL")))
+            .andExpect(content().string(containsString("VERSION 2")))
+            .andExpect(content().string(containsString("DEPLOYMENT VALIDATED")))
             .andExpect(content().string(containsString("NEW RELEASE")))
             .andExpect(content().string(containsString("Student Information Directory")));
     }
