@@ -1,6 +1,6 @@
 # Faculty Demonstration Guide – 24CC3046-P041
 
-**Project:** Azure App Service Deployment Slots with Swap Validation  
+**Project:** Student Release Hub - Azure App Service Deployment Slots with Swap Validation
 **Target:** Live Examination / Hackathon Jury Demonstration  
 
 ---
@@ -18,8 +18,8 @@ Visually and technically prove zero-downtime application updates on Microsoft Az
 3. Open the App Service: `jyothika-student-portal-2026`.
 4. Navigate to **Deployment slots** in the left sidebar.
 5. Point out to faculty:
-   - **Production slot:** `jyothika-student-portal-2026` (Traffic: 100%)
-   - **Staging slot:** `jyothika-student-portal-2026-staging` (Traffic: 0%)
+   - **Production slot:** existing App Service resource `jyothika-student-portal-2026` (Traffic: 100%)
+   - **Staging slot:** existing staging slot `jyothika-student-portal-2026-staging` (Traffic: 0%)
 
 ---
 

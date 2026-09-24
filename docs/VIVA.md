@@ -1,7 +1,7 @@
 # Viva Examination Questions and Answers – 24CC3046-P041
 
 **Project Title:** Azure App Service Deployment Slots with Swap Validation  
-**Candidate:** Jyothika Vucha  
+**Project:** Student Release Hub
 
 ---
 

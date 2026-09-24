@@ -1,6 +1,5 @@
 package com.example.studentportal;
 
-import com.example.studentportal.model.Student;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -25,14 +23,6 @@ public class HomeController {
 
     @Value("${app.environment:Azure Cloud}")
     private String environment;
-
-    private static final List<Student> SAMPLE_STUDENTS = List.of(
-        new Student("STU-1001", "Jyothika Vucha", "Cloud Architecture & DevOps", "jyothika@portal.azure.edu", 3.94, "Active"),
-        new Student("STU-1002", "Alex Mercer", "Distributed Systems & Kubernetes", "alex.m@portal.azure.edu", 3.82, "Active"),
-        new Student("STU-1003", "Priya Sharma", "Artificial Intelligence & ML", "priya.s@portal.azure.edu", 3.90, "Active"),
-        new Student("STU-1004", "Marcus Vance", "Cybersecurity & Cloud Security", "marcus.v@portal.azure.edu", 3.75, "Active"),
-        new Student("STU-1005", "Elena Rostova", "Data Engineering & Analytics", "elena.r@portal.azure.edu", 3.88, "Active")
-    );
 
     /**
      * Default landing page.
@@ -96,11 +86,10 @@ public class HomeController {
         model.addAttribute("rawVersion", appVersion);
         model.addAttribute("slotName", slotName);
         model.addAttribute("environment", environment);
-        model.addAttribute("students", SAMPLE_STUDENTS);
-        model.addAttribute("totalStudents", 1420);
-        model.addAttribute("totalCourses", 36);
-        model.addAttribute("averageGpa", "3.78");
         model.addAttribute("healthStatus", "UP");
+        model.addAttribute("warmupStatus", "READY");
+        model.addAttribute("swapValidation", "PASSED");
+        model.addAttribute("deploymentStatus", "VALIDATED");
         model.addAttribute("timestamp", Instant.now().toString());
     }
 }

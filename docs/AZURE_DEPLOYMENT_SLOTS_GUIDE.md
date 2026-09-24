@@ -3,7 +3,7 @@
 **Project ID:** 24CC3046-P041  
 **Project Name:** Azure App Service Deployment Slots with Swap Validation  
 **Target Platform:** Azure App Service (Linux, Java 21 LTS, Java SE)  
-**Application:** Student Portal (Spring Boot + Thymeleaf + Spring Boot Actuator)  
+**Application:** Student Release Hub (Spring Boot + Thymeleaf + Spring Boot Actuator)
 
 ---
 
@@ -21,13 +21,13 @@ flowchart TD
 
     subgraph Azure [Azure App Service Plan - Standard S1+]
         subgraph StagingSlot [Staging Slot]
-            StagingApp[Student Portal Version 2.0]
+            StagingApp[Student Release Hub Version 2.0]
             StagingHealth[Health Probe: /actuator/health]
             StagingApp --- StagingHealth
         end
 
         subgraph ProdSlot [Production Slot]
-            ProdApp[Student Portal Version 1.0]
+            ProdApp[Student Release Hub Version 1.0]
             ProdHealth[Health Probe: /actuator/health]
             ProdApp --- ProdHealth
         end
@@ -53,7 +53,7 @@ flowchart TD
 
 ### 1. Production Slot
 - **Definition:** The active, default deployment slot of Azure App Service that receives all public production internet traffic (`https://<app-name>.azurewebsites.net`).
-- **Role in Demo:** Initially hosts **Version 1** of the Student Portal. Once swap validation is approved and executed, it automatically serves **Version 2** without dropping any ongoing user requests.
+- **Role in Demo:** Initially hosts **Version 1** of Student Release Hub. Once swap validation is approved and executed, it automatically serves **Version 2** without dropping any ongoing user requests.
 
 ### 2. Staging Slot
 - **Definition:** An isolated live staging environment within the exact same App Service Plan, accessible via an independent URL (`https://<app-name>-staging.azurewebsites.net`).
@@ -61,10 +61,10 @@ flowchart TD
 
 ### 3. Version 1 (Baseline Portal)
 - **Visual Design:** Clean, minimalist card interface with a classic Blue primary theme (`#1e40af`), simple top navigation (`Home | About | Contact`), and clear badge `VERSION 1`.
-- **Purpose:** Represents the existing legacy/baseline student portal running in production before the upgrade.
+- **Purpose:** Represents the existing baseline release running before the upgrade.
 - **Route:** Available at `/` when configured as Version 1, or explicitly at `/v1`.
 
-### 4. Version 2 (Enhanced Student Portal)
+### 4. Version 2 (Enhanced Student Release Hub)
 - **Visual Design:** High-impact modern dark-mode portal with emerald accents, glowing version badge `v2.0.0 - NEW RELEASE`, live health probe status pill, real-time KPI metrics cards (Total Students: 1,420, Active Courses: 36, Avg GPA: 3.78), responsive Student Information Directory table, and an interactive Slot Swap architecture timeline.
 - **Purpose:** Demonstrates visible, undeniable change when the slot swap completes.
 - **Route:** Available at `/` (default) or explicitly at `/v2`.
@@ -88,7 +88,7 @@ flowchart TD
 
 ### 7. Slot-Specific Settings ("Sticky" Settings)
 - **Concept:** App Service configuration settings that stay tied to a physical slot rather than moving with the application code during a swap.
-- **Examples in Student Portal:**
+- **Examples in Student Release Hub:**
   - `AZURE_SLOT_NAME`: Configured with **Deployment Slot Setting = true (Sticky)**.
     - Production slot maintains `AZURE_SLOT_NAME=Production`.
     - Staging slot maintains `AZURE_SLOT_NAME=Staging`.

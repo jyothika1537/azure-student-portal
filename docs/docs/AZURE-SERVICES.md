@@ -1,7 +1,7 @@
 # Azure Services Required
 
 ## 1. Azure App Service
-Used to host and run the Spring Boot Student Portal application in the cloud.
+Used to host and run the Spring Boot Student Release Hub application in the cloud.
 
 ## 2. App Service Plan
 Provides the compute resources required to run the App Service.

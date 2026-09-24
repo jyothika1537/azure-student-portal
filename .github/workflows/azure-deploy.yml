@@ -21,7 +21,7 @@ on:
         type: string
 
 env:
-  AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME || 'azure-student-portal' }}
+  AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME || 'student-release-hub-2026' }}
   JAVA_VERSION: '21'
 
 jobs:

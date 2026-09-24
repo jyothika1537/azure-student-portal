@@ -1,7 +1,7 @@
 package com.example.studentportal.model;
 
 /**
- * Lightweight domain model representing a student in the Azure Student Portal.
+ * Retained domain model from the original portal; the current release dashboard does not use it.
  */
 public record Student(
     String id,

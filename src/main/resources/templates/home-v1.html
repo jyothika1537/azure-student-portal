@@ -1,189 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal - Version 1</title>
+    <title>Student Release Hub | Baseline Release</title>
     <style>
-        :root {
-            --bg-color: #f0f4f8;
-            --card-bg: #ffffff;
-            --primary: #1e40af;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --border: #cbd5e1;
-            --v1-badge: #2563eb;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-            margin: 0;
-            padding: 40px 20px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            color: var(--text-dark);
-        }
-
-        .portal-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            max-width: 650px;
-            width: 100%;
-            padding: 36px;
-            border-top: 6px solid var(--primary);
-        }
-
-        h1 {
-            color: var(--primary);
-            margin-top: 0;
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        h2 {
-            color: var(--text-dark);
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .version-badge {
-            display: inline-block;
-            background: #dbeafe;
-            color: #1d4ed8;
-            padding: 6px 14px;
-            border-radius: 9999px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            border: 1px solid #93c5fd;
-            margin: 12px 0 20px 0;
-        }
-
-        .slot-badge {
-            display: inline-block;
-            background: #f1f5f9;
-            color: #475569;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-left: 8px;
-        }
-
-        .nav-links {
-            padding: 12px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .nav-links a {
-            color: var(--primary);
-            text-decoration: none;
-            margin: 0 8px;
-        }
-
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-
-        .desc-text {
-            color: var(--text-muted);
-            margin-top: 16px;
-            font-size: 0.95rem;
-        }
-
-        .meta-box {
-            margin-top: 24px;
-            padding: 16px;
-            background-color: #f8fafc;
-            border-radius: 8px;
-            border: 1px dashed var(--border);
-            font-size: 0.88rem;
-        }
-
-        .meta-box p {
-            margin: 4px 0;
-        }
-
-        .action-row {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff;
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-        }
-
-        .btn-outline {
-            background-color: #ffffff;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: #eff6ff;
-        }
+        :root { --ink:#17243a; --muted:#5f7187; --blue:#1d5ea8; --pale:#edf5fb; --line:#c8d8e8; --green:#19794f; }
+        * { box-sizing:border-box; } body { margin:0; min-height:100vh; color:var(--ink); background:linear-gradient(135deg,#eaf3fa,#d6e3ee); font-family:"Segoe UI","Helvetica Neue",sans-serif; }
+        .page { max-width:920px; margin:auto; padding:28px; } header { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:14px 0 26px; border-bottom:1px solid var(--line); } .brand { display:flex; align-items:center; gap:11px; color:var(--ink); text-decoration:none; font-weight:700; } .mark { display:grid; place-items:center; width:35px; height:35px; border-radius:9px; color:white; background:var(--blue); font-size:.75rem; }
+        nav { display:flex; gap:16px; } nav a { color:var(--muted); text-decoration:none; font-size:.85rem; } nav a:hover { color:var(--blue); } main { padding:70px 0; } .eyebrow { color:var(--blue); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; } h1 { margin:12px 0 10px; font-size:clamp(2.6rem,7vw,5rem); line-height:1; letter-spacing:-.04em; } h2 { margin:0 0 8px; font-size:1.4rem; } .lead { max-width:650px; color:var(--muted); font-size:1.08rem; }
+        .badges { display:flex; flex-wrap:wrap; gap:10px; margin:28px 0; } .badge { padding:8px 12px; border:1px solid var(--line); border-radius:7px; color:var(--muted); background:white; font-size:.78rem; font-weight:700; } .badge.version { color:var(--blue); background:#dcecfb; border-color:#9fc5e8; } .badge.good { color:var(--green); background:#e1f4ea; border-color:#a9d8bd; }
+        .panel { max-width:700px; padding:24px; border:1px solid var(--line); border-radius:9px; background:#ffffffd9; box-shadow:0 18px 40px #36506b1a; } .facts { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:20px; } .fact label { display:block; color:var(--muted); font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; } .fact strong { display:block; margin-top:4px; } .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; } .button { padding:10px 14px; border-radius:7px; color:var(--blue); border:1px solid var(--blue); text-decoration:none; font-size:.85rem; font-weight:700; } .button.primary { color:white; background:var(--blue); }
+        footer { padding:22px 0; border-top:1px solid var(--line); color:var(--muted); font-size:.82rem; } @media (max-width:600px) { .page { padding:20px; } header { align-items:flex-start; flex-direction:column; } main { padding:50px 0; } .facts { grid-template-columns:1fr; } }
     </style>
 </head>
 <body>
-
-    <div class="portal-card">
-        <h1>🎓 STUDENT PORTAL</h1>
-
-        <h2>Welcome to Student Portal</h2>
-
-        <div>
-            <span class="version-badge" th:text="${version}">VERSION 1</span>
-            <span class="slot-badge" th:text="'Slot: ' + ${slotName}">Slot: Production</span>
-            <span class="slot-badge" style="background:#fef3c7; color:#92400e; border:1px solid #fde68a;" th:text="'Env: ' + ${environment}">Env: production</span>
-        </div>
-
-        <p class="nav-links">
-            <a href="/">Home</a> | 
-            <a href="/actuator/health">Actuator Health</a> | 
-            <a href="/api/status">Diagnostic Status</a>
-        </p>
-
-        <p class="desc-text" style="font-weight: 600; color: #1e40af;">Azure App Service Deployment Slots</p>
-        <p class="desc-text" style="margin-top: 4px;">Azure App Service Deployment Project</p>
-
-        <div class="meta-box">
-            <p><strong>Baseline Deployment State:</strong> Version 1 (Production)</p>
-            <p><strong>Health Probe:</strong> <a href="/actuator/health" style="color:#2563eb;">/actuator/health</a> (HTTP 200 UP)</p>
-            <p><strong>Slot Swap Demo:</strong> Deploy Version 2 to the <code>staging</code> slot and trigger swap validation to test zero-downtime routing cutover.</p>
-        </div>
-
-        <div class="action-row">
-            <a href="/v2" class="btn btn-primary">Preview Version 2 Portal &rarr;</a>
-            <a href="/actuator/health" class="btn btn-outline" target="_blank">Validate Health Probe</a>
-        </div>
-    </div>
-
+<div class="page">
+    <header><a class="brand" href="/"><span class="mark">SR</span>Student Release Hub</a><nav aria-label="Baseline navigation"><a href="/">Version 2</a><a href="/actuator/health">Health</a><a href="/api/status">Status</a></nav></header>
+    <main><span class="eyebrow">Baseline release</span><h1>Student Release Hub</h1><h2>Version 1 reference experience</h2><p class="lead">A visually distinct baseline for demonstrating how Azure App Service deployment slots preserve an earlier release during validation and rollback.</p><div class="badges"><span class="badge version" th:text="${version}">VERSION 1</span><span class="badge" th:text="'Slot: ' + ${slotName}">Slot: Production</span><span class="badge good">Baseline release</span></div><section class="panel"><span class="eyebrow">Release metadata</span><div class="facts"><div class="fact"><label>Platform</label><strong>Azure App Service</strong></div><div class="fact"><label>Deployment pattern</label><strong>Staging and production slots</strong></div><div class="fact"><label>Environment</label><strong th:text="${environment}">Azure Cloud</strong></div><div class="fact"><label>Health endpoint</label><strong>/actuator/health</strong></div></div><div class="actions"><a class="button primary" href="/v2">View current dashboard</a><a class="button" href="/actuator/health" target="_blank">Validate health</a></div></section></main>
+    <footer>Student Release Hub &bull; Azure App Service Deployment Slots &bull; Spring Boot and Java 21</footer>
+</div>
 </body>
 </html>

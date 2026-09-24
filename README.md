@@ -5,7 +5,7 @@
 [![Azure App Service](https://img.shields.io/badge/Azure-App%20Service%20Slots-0078D4.svg)](https://azure.microsoft.com/en-us/products/app-service/)
 [![CI/CD](https://img.shields.io/badge/GitHub%20Actions-Automated%20Deploy-2088FF.svg)](https://github.com/features/actions)
 
-An enterprise-grade, demo-ready **Student Portal** engineered for **Azure App Service Deployment Slots** with zero-downtime traffic cutover and automated **Swap Validation**.
+An enterprise-grade, demo-ready **Student Release Hub** engineered for **Azure App Service Deployment Slots** with zero-downtime traffic cutover and automated **Swap Validation**.
 
 ---
 
@@ -14,8 +14,8 @@ An enterprise-grade, demo-ready **Student Portal** engineered for **Azure App Se
 In mission-critical enterprise applications, deploying new releases directly to production causes cold starts, potential downtime, and user disruption. 
 
 This project demonstrates how **Azure App Service Deployment Slots** resolve this challenge:
-1. **Version 1 (Production):** The baseline portal serving users.
-2. **Version 2 (Staging):** The modern, feature-rich release deployed into an isolated `staging` slot.
+1. **Version 1 (Baseline):** The previous release retained for comparison and rollback.
+2. **Version 2 (Production):** The validated release promoted from an isolated `staging` slot.
 3. **Automated Health Validation & Warm-up:** Azure and CI/CD probe `/actuator/health` to confirm the JVM is completely warmed up, JIT-compiled, and returning `HTTP 200 (UP)` with swap validation status `PASSED`.
 4. **Zero-Downtime Swap:** Virtual IP routing shifts live traffic from Staging to Production instantaneously without dropping a single HTTP request.
 5. **Instant Rollback:** If any issue arises, another swap instantly restores the previous version.
@@ -30,7 +30,7 @@ This project demonstrates how **Azure App Service Deployment Slots** resolve thi
 - **Build Tool:** Apache Maven 3.9+ (with Maven Wrapper `mvnw` / `mvnw.cmd`)
 - **Hosting Platform:** Azure App Service (Linux, Java 21, Java SE embedded web server)
 - **CI/CD:** GitHub Actions (`.github/workflows/azure-deploy.yml`)
-- **Data Layer:** Lightweight in-memory records (no external database overhead)
+- **Data Layer:** Deployment-focused presentation state (no external database overhead)
 
 ---
 
@@ -68,9 +68,9 @@ The application will start on **http://localhost:8080**.
 
 | Endpoint | Type | Description |
 | :--- | :--- | :--- |
-| **`/`** | HTML Webpage | Default Landing Page (renders active version based on `app.version` or query parameter `?v=1` / `?v=2`) |
-| **`/v1`** | HTML Webpage | Explicit Version 1 Baseline Portal (Classic blue UI, Version 1 badge) |
-| **`/v2`** | HTML Webpage | Explicit Version 2 Enhanced Portal (Modern dark-mode UI, metrics, student directory) |
+| **`/`** | HTML Webpage | Default release dashboard based on `app.version` or query parameter `?v=1` / `?v=2` |
+| **`/v1`** | HTML Webpage | Explicit Version 1 baseline release view |
+| **`/v2`** | HTML Webpage | Explicit Version 2 deployment validation dashboard |
 | **`/actuator/health`** | JSON API | Spring Boot Actuator Health Check (Custom `SlotSwapHealthIndicator` with slot name, version, and swap validation status) |
 | **`/api/status`** | JSON API | Lightweight system diagnostic payload (`version`, `slot`, `timestamp`, `status`) |
 
@@ -87,7 +87,7 @@ The application will start on **http://localhost:8080**.
 RESOURCE_GROUP="rg-studentportal-demo"
 LOCATION="eastus"
 APP_PLAN="plan-studentportal-s1"
-APP_NAME="azure-student-portal-$RANDOM"
+APP_NAME="student-release-hub-$RANDOM"
 
 # 1. Create Resource Group
 az group create --name $RESOURCE_GROUP --location $LOCATION
@@ -161,7 +161,7 @@ The repository includes a ready-to-use GitHub Actions workflow at [`.github/work
 
 ### Configure GitHub Repository Secrets
 Navigate to **GitHub Repository -> Settings -> Secrets and variables -> Actions** and add:
-1. `AZURE_WEBAPP_NAME`: Your Azure App Service name (e.g., `azure-student-portal`).
+1. `AZURE_WEBAPP_NAME`: Your Azure App Service name (for example, `student-release-hub`).
 2. `AZURE_WEBAPP_PUBLISH_PROFILE`:
    - Obtain from Azure Portal: **Web App -> Overview -> Get publish profile**.
    - Paste the complete XML content into the secret.
@@ -181,7 +181,7 @@ Follow this exact walkthrough to present the project during hackathon judging or
 
 ### Phase 1: Establish the Baseline State (Production on Version 1)
 1. Ensure the **Production slot** URL (`https://<app-name>.azurewebsites.net`) displays **Version 1**:
-   - Classic Blue Header: `🎓 Student Portal`
+  - Baseline release view: `Student Release Hub`
    - Badge: `VERSION 1`
    - Baseline text: `Azure App Service Deployment Project`
 2. Point out that students and faculty are actively using Version 1 in production.
@@ -189,11 +189,10 @@ Follow this exact walkthrough to present the project during hackathon judging or
 ### Phase 2: Deploy Version 2 to the Staging Slot
 1. Run the GitHub Actions workflow targeting the `staging` slot (or deploy via Azure CLI/Maven).
 2. The staging slot URL (`https://<app-name>-staging.azurewebsites.net`) is now live with **Version 2.0**:
-   - Modern Dark-mode design with glowing emerald/indigo gradients.
-   - Prominent badge: `⚡ v2.0.0 - NEW RELEASE`.
-   - Real-time KPI Metric cards (1,420 Enrolled Students, 36 Courses, 3.78 Avg GPA).
-   - Live Student Directory Table with student profiles.
-   - Slot Badge: `☁️ Slot: Staging`.
+  - Professional deployment dashboard with release status cards.
+  - Health, warm-up, and swap validation indicators.
+  - Deployment pipeline from GitHub Actions to production.
+  - Slot Badge: `Slot: Staging`.
 
 ### Phase 3: Inspect Both Slots Side-by-Side
 Open both browser tabs side-by-side:
