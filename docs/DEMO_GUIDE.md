@@ -15,11 +15,11 @@ Visually and technically prove zero-downtime application updates on Microsoft Az
 ### Step 1: Show Azure Portal Resources
 1. Open [Azure Portal](https://portal.azure.com).
 2. Navigate to **Resource Groups** -> Select `rg-studentportal-demo` (or your resource group).
-3. Open the App Service: `jyothika-student-portal-2026`.
+3. Open the App Service: `student-release-hub-2026`.
 4. Navigate to **Deployment slots** in the left sidebar.
 5. Point out to faculty:
-   - **Production slot:** existing App Service resource `jyothika-student-portal-2026` (Traffic: 100%)
-   - **Staging slot:** existing staging slot `jyothika-student-portal-2026-staging` (Traffic: 0%)
+   - **Production slot:** `student-release-hub-2026` (Traffic: 100%)
+   - **Staging slot:** `student-release-hub-2026-staging` (Traffic: 0%)
 
 ---
 
@@ -29,7 +29,7 @@ Open two browser tabs side-by-side:
 
 | Parameter | Tab 1: Production URL | Tab 2: Staging URL |
 | :--- | :--- | :--- |
-| **URL** | `https://jyothika-student-portal-2026.azurewebsites.net` | `https://jyothika-student-portal-2026-staging.azurewebsites.net` |
+| **URL** | `https://student-release-hub-2026.azurewebsites.net` | `https://student-release-hub-2026-staging.azurewebsites.net` |
 | **Visual Theme** | Classic Blue Card Theme | Sleek Dark Mode with Emerald Accents |
 | **Version Badge** | `VERSION 1` (Production Baseline) | `⚡ v2.0.0 - NEW RELEASE` |
 | **Slot Badge** | `Slot: Production` | `Slot: Staging` |
@@ -43,7 +43,7 @@ Open two browser tabs side-by-side:
 
 ### Step 3: Demonstrate Health Validation & Warm-Up
 1. Open the Actuator Health probe in Staging:
-   `https://jyothika-student-portal-2026-staging.azurewebsites.net/actuator/health`
+   `https://student-release-hub-2026-staging.azurewebsites.net/actuator/health`
 2. Show the JSON payload:
    ```json
    {
@@ -92,7 +92,7 @@ Open two browser tabs side-by-side:
 ---
 
 ### Step 6: Verify Production After Swap
-1. Refresh the **Production URL** (`https://jyothika-student-portal-2026.azurewebsites.net`).
+1. Refresh the **Production URL** (`https://student-release-hub-2026.azurewebsites.net`).
 2. **Immediate Result:** The Production URL now displays **Version 2.0**:
    - `⚡ v2.0.0 - NEW RELEASE`
    - `Slot: Production`
