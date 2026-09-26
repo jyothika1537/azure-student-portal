@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Release Hub | Baseline Release</title>
+    <title>Student Release Hub | Version 1.0</title>
     <style>
         :root { --ink:#17243a; --muted:#5f7187; --blue:#1d5ea8; --pale:#edf5fb; --line:#c8d8e8; --green:#19794f; }
         * { box-sizing:border-box; } body { margin:0; min-height:100vh; color:var(--ink); background:linear-gradient(135deg,#eaf3fa,#d6e3ee); font-family:"Segoe UI","Helvetica Neue",sans-serif; }
@@ -16,8 +16,8 @@
 </head>
 <body>
 <div class="page">
-    <header><a class="brand" href="/"><span class="mark">SR</span>Student Release Hub</a><nav aria-label="Baseline navigation"><a href="/">Version 2</a><a href="/actuator/health">Health</a><a href="/api/status">Status</a></nav></header>
-    <main><span class="eyebrow">Baseline release</span><h1>Student Release Hub</h1><h2>Version 1 reference experience</h2><p class="lead">A visually distinct baseline for demonstrating how Azure App Service deployment slots preserve an earlier release during validation and rollback.</p><div class="badges"><span class="badge version" th:text="${version}">VERSION 1</span><span class="badge" th:text="'Slot: ' + ${slotName}">Slot: Production</span><span class="badge good">Baseline release</span></div><section class="panel"><span class="eyebrow">Release metadata</span><div class="facts"><div class="fact"><label>Platform</label><strong>Azure App Service</strong></div><div class="fact"><label>Deployment pattern</label><strong>Staging and production slots</strong></div><div class="fact"><label>Environment</label><strong th:text="${environment}">Azure Cloud</strong></div><div class="fact"><label>Health endpoint</label><strong>/actuator/health</strong></div></div><div class="actions"><a class="button primary" href="/v2">View current dashboard</a><a class="button" href="/actuator/health" target="_blank">Validate health</a></div></section></main>
+    <header><a class="brand" href="/"><span class="mark">SR</span>Student Release Hub</a><nav aria-label="Baseline navigation"><a href="/">Home</a><a href="/actuator/health">Health</a><a href="/api/status">Status</a></nav></header>
+    <main><span class="eyebrow" th:text="${releaseName}">Production Release</span><h1>Student Release Hub</h1><h2 th:text="${version}">Version 1.0</h2><p class="lead">A baseline release for demonstrating how Azure App Service deployment slots preserve an earlier release during validation and rollback.</p><div class="badges"><span class="badge version" th:text="${version}">Version 1.0</span><span class="badge" th:text="'Slot: ' + ${slotName}">Slot: production</span><span class="badge good" th:text="${releaseName}">Production Release</span></div><section class="panel"><span class="eyebrow">Release metadata</span><div class="facts"><div class="fact"><label>Application version</label><strong th:text="${rawVersion}">1.0.0</strong></div><div class="fact"><label>Deployment slot</label><strong th:text="${slotName}">production</strong></div><div class="fact"><label>Environment</label><strong th:text="${environment}">Azure Cloud</strong></div><div class="fact"><label>Health endpoint</label><strong>/actuator/health</strong></div></div><div class="actions"><a class="button primary" href="/">Current release</a><a class="button" href="/actuator/health" target="_blank">Validate health</a></div></section></main>
     <footer>Student Release Hub &bull; Azure App Service Deployment Slots &bull; Spring Boot and Java 21</footer>
 </div>
 </body>

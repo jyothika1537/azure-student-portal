@@ -76,20 +76,27 @@ public class HomeController {
     }
 
     private void populateVersion1Model(Model model) {
-        model.addAttribute("version", "VERSION 1");
+        model.addAttribute("version", "Version 1.0");
+        model.addAttribute("rawVersion", appVersion);
+        model.addAttribute("releaseName", releaseName());
         model.addAttribute("slotName", slotName);
         model.addAttribute("environment", environment);
     }
 
     private void populateVersion2Model(Model model) {
-        model.addAttribute("version", "VERSION 2");
+        model.addAttribute("version", "Version 2.0");
         model.addAttribute("rawVersion", appVersion);
+        model.addAttribute("releaseName", releaseName());
         model.addAttribute("slotName", slotName);
         model.addAttribute("environment", environment);
         model.addAttribute("healthStatus", "UP");
         model.addAttribute("warmupStatus", "READY");
-        model.addAttribute("swapValidation", "PASSED");
+        model.addAttribute("swapValidation", "READY");
         model.addAttribute("deploymentStatus", "VALIDATED");
         model.addAttribute("timestamp", Instant.now().toString());
+    }
+
+    private String releaseName() {
+        return "production".equalsIgnoreCase(slotName) ? "Production Release" : "Staging Release";
     }
 }

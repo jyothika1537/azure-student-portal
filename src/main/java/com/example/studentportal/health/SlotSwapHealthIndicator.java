@@ -33,7 +33,7 @@ public class SlotSwapHealthIndicator implements HealthIndicator {
             .withDetail("slotName", slotName)
             .withDetail("environment", environment)
             .withDetail("warmupStatus", "READY")
-            .withDetail("swapValidation", "PASSED")
+            .withDetail("swapValidation", "READY")
             .withDetail("startedAt", startupTime.toString())
             .build();
     }

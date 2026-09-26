@@ -27,7 +27,9 @@ class StudentportalApplicationTests {
     void testHomePageLoads() throws Exception {
         mockMvc.perform(get("/"))
             .andExpect(status().isOk())
-            .andExpect(content().string(containsString("Student Release Hub")));
+            .andExpect(content().string(containsString("Student Release Hub")))
+            .andExpect(content().string(containsString("Version 1.0")))
+            .andExpect(content().string(containsString("Production Release")));
     }
 
     @Test
@@ -35,9 +37,9 @@ class StudentportalApplicationTests {
         mockMvc.perform(get("/v1"))
             .andExpect(status().isOk())
             .andExpect(content().string(containsString("Student Release Hub")))
-            .andExpect(content().string(containsString("VERSION 1")))
+            .andExpect(content().string(containsString("Version 1.0")))
             .andExpect(content().string(containsString("Azure App Service Deployment Slots")))
-            .andExpect(content().string(containsString("Baseline release")));
+            .andExpect(content().string(containsString("Production Release")));
     }
 
     @Test
@@ -45,7 +47,7 @@ class StudentportalApplicationTests {
         mockMvc.perform(get("/v2"))
             .andExpect(status().isOk())
             .andExpect(content().string(containsString("Student Release Hub")))
-            .andExpect(content().string(containsString("VERSION 2")))
+            .andExpect(content().string(containsString("Version 2.0")))
             .andExpect(content().string(containsString("Deployment state at a glance")))
             .andExpect(content().string(containsString("Swap validation")));
     }
