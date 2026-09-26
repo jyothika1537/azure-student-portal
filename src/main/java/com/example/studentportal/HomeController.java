@@ -92,7 +92,6 @@ public class HomeController {
         model.addAttribute("healthStatus", "UP");
         model.addAttribute("warmupStatus", "READY");
         model.addAttribute("swapValidation", "READY");
-        model.addAttribute("deploymentStatus", "VALIDATED");
         model.addAttribute("timestamp", Instant.now().toString());
     }
 
